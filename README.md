@@ -17,7 +17,7 @@ The ultimate goal of Sonder is to build analytics and insights based on recorded
 
 1. Clone the repository:
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/ChrisAdan/sonder.git
    ```
 2. Navigate to the project directory:
    ```bash
