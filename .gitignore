@@ -1,2 +1,5 @@
 *.code-workspace
 scripts/setup.py
+.venv
+*.egg-info/
+__pycache__/
