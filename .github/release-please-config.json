@@ -1,0 +1,36 @@
+{
+  "release-type": "python",
+  "packages": {
+    ".": {
+      "package-name": "sonder",
+      "release-type": "python",
+      "version-file": "src/sonder/__init__.py",
+      "changelog-path": "CHANGELOG.md",
+      "include-v-in-tag": true
+    },
+    "include-component-in-tag": false,
+    "include-v-in-tag": true,
+    "changelog-sections": [
+      { "type": "feat", "section": "Features" },
+      { "type": "fix", "section": "Bug Fixes" },
+      { "type": "perf", "section": "Performance Improvements" },
+      { "type": "revert", "section": "Reverts" },
+      { "type": "docs", "section": "Documentation" },
+      { "type": "style", "section": "Styles", "hidden": true },
+      { "type": "chore", "section": "Miscellaneous Chores", "hidden": true },
+      { "type": "refactor", "section": "Code Refactoring", "hidden": true },
+      { "type": "test", "section": "Tests", "hidden": true },
+      { "type": "build", "section": "Build System", "hidden": true },
+      { "type": "ci", "section": "Continuous Integration", "hidden": true }
+    ],
+    "extra-files": ["src/sonder/__init__.py"],
+    "release-search-depth": 400,
+    "commit-search-depth": 500,
+    "pull-request-title-pattern": "chore${scope}: release${component} ${version}",
+    "pull-request-header": "Release ${version}",
+    "separate-pull-requests": false,
+    "skip-github-release": false,
+    "draft": false,
+    "prerelease": false
+  }
+}
