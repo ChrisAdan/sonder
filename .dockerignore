@@ -1,0 +1,56 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project specific
+*.db
+*.db-wal
+*.db-shm
+build/
+dist/
+htmlcov/
+.ruff_cache/
+.black_cache/
+profile.stats
+notebooks/.ipynb_checkpoints/
+
+# Development
+Makefile
+docker-compose.yml
+*.log
+
+# Documentation
+docs/_build/
