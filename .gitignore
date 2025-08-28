@@ -66,6 +66,7 @@ notebooks/.ipynb_checkpoints/
 
 # Database files
 *.db
+*.duckdb
 *.db-wal
 *.db-shm
 *.sqlite
@@ -91,7 +92,6 @@ Thumbs.db:encryptable
 
 # Project specific
 sonder.db*
-data/
 temp/
 tmp/
 
