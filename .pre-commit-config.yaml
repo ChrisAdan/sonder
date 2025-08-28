@@ -1,0 +1,78 @@
+# Pre-commit hooks for code quality
+repos:
+  # General code quality
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: debug-statements
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
+
+  # Python import sorting
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: isort (python)
+
+  # Python code formatting
+  - repo: https://github.com/psf/black
+    rev: 23.12.1
+    hooks:
+      - id: black
+        language_version: python3.11
+
+  # Python linting
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        additional_dependencies: [flake8-docstrings]
+        args: [--max-line-length=88, --extend-ignore=E203, W503]
+
+  # Type checking
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.8.0
+    hooks:
+      - id: mypy
+        additional_dependencies: [types-all]
+        args: [--ignore-missing-imports]
+
+  # Security scanning
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        args: [-c, pyproject.toml]
+        additional_dependencies: ["bandit[toml]"]
+
+  # Dependency safety
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+    rev: v1.3.2
+    hooks:
+      - id: python-safety-dependencies-check
+
+# Configuration for specific hooks
+default_language_version:
+  python: python3.11
+
+ci:
+  autofix_commit_msg: |
+    [pre-commit.ci] auto fixes from pre-commit hooks
+
+    for more information, see https://pre-commit.ci
+  autofix_prs: true
+  autoupdate_branch: "main"
+  autoupdate_commit_msg: "[pre-commit.ci] pre-commit autoupdate"
+  autoupdate_schedule: weekly
+  skip: []
+  submodules: false
