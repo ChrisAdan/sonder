@@ -8,9 +8,9 @@ This module contains the fundamental building blocks of the Sonder simulation:
 - System coordination
 """
 
-from .core.config import game_config, display_config, GameConfig, DisplayConfig
-from .core.world import World, WorldState
-from .core.game_loop import GameLoop
+from .config import game_config, display_config, GameConfig, DisplayConfig
+from .world import World, WorldState
+from .game_loop import GameLoop
 
 __all__ = [
     "game_config",

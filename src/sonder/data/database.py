@@ -186,7 +186,7 @@ class DuckDBAdapter(DatabaseAdapter):
         tables = [
             """
             CREATE TABLE IF NOT EXISTS entities (
-                id BIGINT PRIMARY KEY,
+                id VARCHAR(50) PRIMARY KEY,
                 entity_type VARCHAR(50) NOT NULL,
                 x INTEGER NOT NULL,
                 y INTEGER NOT NULL,
@@ -196,7 +196,7 @@ class DuckDBAdapter(DatabaseAdapter):
             """,
             """
             CREATE TABLE IF NOT EXISTS entity_stats (
-                entity_id BIGINT NOT NULL,
+                entity_id VARCHAR(50) NOT NULL,
                 health INTEGER NOT NULL,
                 max_health INTEGER NOT NULL,
                 attack INTEGER NOT NULL,
@@ -211,9 +211,9 @@ class DuckDBAdapter(DatabaseAdapter):
             """,
             """
             CREATE TABLE IF NOT EXISTS game_events (
-                id BIGSERIAL PRIMARY KEY,
+                id VARCHAR PRIMARY KEY,
                 event_type VARCHAR(50) NOT NULL,
-                entity_id BIGINT,
+                entity_id VARCHAR(50),
                 x INTEGER,
                 y INTEGER,
                 data JSON,
@@ -232,9 +232,9 @@ class DuckDBAdapter(DatabaseAdapter):
             """,
             """
             CREATE TABLE IF NOT EXISTS evolution_events (
-                id BIGSERIAL PRIMARY KEY,
-                entity_id BIGINT NOT NULL,
-                parent_id BIGINT,
+                id VARCHAR(50) PRIMARY KEY,
+                entity_id VARCHAR(50) NOT NULL,
+                parent_id VARCHAR(50),
                 generation INTEGER NOT NULL,
                 mutation_type VARCHAR(50),
                 stat_changes JSON,
