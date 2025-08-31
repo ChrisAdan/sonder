@@ -1,12 +1,12 @@
 """Configuration management for Sonder."""
 
 from dataclasses import dataclass
-from typing import Dict, Any
 
 
 @dataclass
 class GameConfig:
     """Main game configuration."""
+
     world_width: int = 100
     world_height: int = 100
     tick_rate: float = 10.0  # ticks per second
@@ -15,9 +15,10 @@ class GameConfig:
     debug_mode: bool = False
 
 
-@dataclass 
+@dataclass
 class DisplayConfig:
     """Display and UI configuration."""
+
     terminal_width: int = 120
     terminal_height: int = 40
     show_grid: bool = True

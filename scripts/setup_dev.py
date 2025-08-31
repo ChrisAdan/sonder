@@ -1,41 +1,37 @@
 #!/usr/bin/env python3
 """Development environment setup script."""
 
-import subprocess
+import subprocess  # nosec B404
 import sys
-from pathlib import Path
+from shutil import which
 
 
-def run_command(cmd):
+def run_command(cmd: list[str]) -> None:
     """Run a shell command."""
-    print(f"Running: {cmd}")
-    result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+    print(f"Running: {' '.join(cmd)}")
+    result = subprocess.run(cmd, capture_output=True, text=True)  # nosec B603
     if result.returncode != 0:
-        print(f"Error: {result.stderr}")
-        return False
-    return True
+        print(f"Error: {result.stderr}", file=sys.stderr)
+        sys.exit(result.returncode)
 
 
-def main():
-    """Set up development environment."""
+def main() -> None:
+    """Set up Sonder development environment."""
     print("Setting up Sonder development environment...")
 
-    
     # Install development dependencies
-    if not run_command("pip install -e '.[dev,analytics]'"):
-        sys.exit(1)
-    
-    # Create initial database
+    run_command([sys.executable, "-m", "pip", "install", "-e", ".[dev,analytics]"])
+
+    # Create initial database (placeholder)
     print("Creating initial database...")
-    # Database setup would go here
-    
+
     # Install pre-commit hooks if available
-    if run_command("which pre-commit > /dev/null"):
-        run_command("pre-commit install")
-    
+    if which("pre-commit"):
+        run_command([sys.executable, "-m", "pre_commit", "install"])
+
     print("\nSetup complete! You can now run:")
     print("  make run    # Start the game")
-    print("  make test   # Run tests") 
+    print("  make test   # Run tests")
     print("  make lint   # Check code quality")
 
 

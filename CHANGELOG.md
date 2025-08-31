@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial project structure
 - Core entity-component-system architecture
-- Basic game loop implementation  
+- Basic game loop implementation
 - Frog entity as starting creature
 - Movement and AI components
 - Terminal-based display foundation
