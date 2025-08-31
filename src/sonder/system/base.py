@@ -1,3 +1,4 @@
+# src/sonder/system/base.py
 """Base system class."""
 
 from abc import ABC, abstractmethod
@@ -14,9 +15,10 @@ class System(ABC):
         self.name = name or self.__class__.__name__
         self.enabled = True
         self.world: Optional["World"] = None
+        self.priority = 0  # Lower numbers run first
 
     @abstractmethod
-    def update(self, world_state: WorldState) -> None:
+    def update(self, world_state: "WorldState") -> None:
         """Update system logic."""
 
     def enable(self) -> None:

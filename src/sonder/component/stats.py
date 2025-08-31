@@ -16,6 +16,7 @@ class StatsComponent(Component):
     speed: int = 1
     energy: int = 100
     max_energy: int = 100
+    move_cooldown: float = 0.5
 
     def is_alive(self) -> bool:
         """Check if entity is alive."""

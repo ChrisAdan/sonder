@@ -82,18 +82,20 @@ def run(
         # Initialize database
         db_manager = init_database(game_config.database_path)
 
-        # Import and run simulation (placeholder for now)
+        # Import systems
         from .core.game_loop import GameLoop
         from .core.world import World
         from .entity.registry import entity_registry
+        from .system.ai import AISystem
         from .system.movement import MovementSystem
 
         # Create world and game loop
         world = World(game_config.world_width, game_config.world_height)
         game_loop = GameLoop(world)
 
-        # Add systems
-        game_loop.add_system(MovementSystem())
+        # Add systems in priority order
+        game_loop.add_system(AISystem())  # AI decides what to do
+        game_loop.add_system(MovementSystem())  # Movement processes intentions
 
         # Spawn initial entities
         for i in range(entities):
@@ -115,9 +117,9 @@ def run(
                 if ticks:
                     click.echo(f"Will run for {ticks} ticks")
 
-                # Initialize and start Rich observer UI
+                # Create observer UI and let it manage the game loop
                 observer_ui = RichObserverUI(world, tick_rate=game_config.tick_rate)
-                observer_ui.start(ticks=ticks)
+                observer_ui.start_observing(game_loop, ticks=ticks)
 
             else:
                 # For other modes, run normal game loop

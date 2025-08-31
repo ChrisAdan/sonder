@@ -1,11 +1,11 @@
+# src/sonder/core/world.py
 """World state management."""
-
-from ..entity.base import Entity
-from ..system.movement import MovementSystem
 
 import time
 from dataclasses import dataclass, field
 from typing import Dict, Optional, Set, Tuple
+
+from ..entity.base import Entity
 
 
 @dataclass
@@ -51,30 +51,17 @@ class WorldState:
 
 
 class World:
-    """Main world manager."""
+    """Main world manager - focused purely on world properties."""
 
     def __init__(self, width: int = 100, height: int = 100):
         self.width = width
         self.height = height
         self.state = WorldState()
 
-        # Register systems
-        self.systems = [MovementSystem()]
-        for system in self.systems:
-            system.world = self  # so they can use bounds, etc.
-
     def is_valid_position(self, x: int, y: int) -> bool:
         """Check if position is within world bounds."""
         return 0 <= x < self.width and 0 <= y < self.height
 
     def tick(self) -> None:
-        """Advance world by one tick."""
+        """Advance world by one tick - bookkeeping."""
         self.state.tick_count += 1
-
-        # 1. Let entities update themselves (AI etc.)
-        for entity in self.state.entities.values():
-            entity.update()
-
-        # 2. Run systems (apply intended moves, update grid, etc.)
-        for system in self.systems:
-            system.check_move_eligibility(self.state)
