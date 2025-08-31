@@ -246,14 +246,14 @@ docs: check-venv  ## Build documentation
 	@if [ ! -d "docs/" ]; then \
 		echo "$(BLUE)ℹ️  Creating docs directory structure...$(RESET)"; \
 		mkdir -p docs/; \
-		echo "# Sonder Documentation" > docs/README.md; \
 	fi
+	@echo "# Sonder Documentation" > docs/README.md
 	@echo "$(GREEN)✅ Documentation structure ready$(RESET)"
 	@echo "📖 Documentation: docs/"
 
 serve-docs:  ## Serve documentation locally
 	@echo "$(YELLOW)🌐 Serving documentation at http://localhost:8000$(RESET)"
-	@cd docs/ && $(VENV_PYTHON) -m http.server 8000
+	@$(VENV_PYTHON) -m http.server 8000 --directory docs
 
 # =============================================================================
 # Docker Support
