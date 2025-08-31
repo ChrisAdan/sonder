@@ -10,6 +10,7 @@ import click
 from . import __version__
 from .core.config import display_config, game_config
 from .data.database import init_database
+from .ui.observer import RichObserverUI
 
 
 def setup_logging(debug: bool = False) -> None:
@@ -108,14 +109,19 @@ def run(
 
         click.echo(f"Spawned {entities} entities")
 
-        if mode == "observer":
-            click.echo("Running in observer mode. Press Ctrl+C to stop.")
-            if ticks:
-                click.echo(f"Will run for {ticks} ticks")
-
-        # Start the simulation
         try:
-            game_loop.start(ticks=ticks)
+            if mode.lower() == "observer":
+                click.echo("Running in observer mode. Press Ctrl+C to stop.")
+                if ticks:
+                    click.echo(f"Will run for {ticks} ticks")
+
+                # Initialize and start Rich observer UI
+                observer_ui = RichObserverUI(world, tick_rate=game_config.tick_rate)
+                observer_ui.start(ticks=ticks)
+
+            else:
+                # For other modes, run normal game loop
+                game_loop.start(ticks=ticks)
 
         except KeyboardInterrupt:
             click.echo("\nSimulation stopped by user")

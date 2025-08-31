@@ -57,7 +57,7 @@ class Entity(ABC):
         return tag in self.tags
 
     @abstractmethod
-    def update(self, dt: float) -> None:
+    def update(self) -> None:
         """Update entity logic. Called each tick."""
 
     @property

@@ -14,5 +14,5 @@ class Component(ABC):
         self.entity: Optional[Entity] = None
         self.enabled: bool = True
 
-    def update(self, dt: float) -> None:
+    def update(self) -> None:
         """Update component logic."""

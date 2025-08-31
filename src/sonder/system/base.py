@@ -16,7 +16,7 @@ class System(ABC):
         self.world: Optional["World"] = None
 
     @abstractmethod
-    def update(self, world_state: "WorldState") -> None:
+    def update(self, world_state: WorldState) -> None:
         """Update system logic."""
 
     def enable(self) -> None:

@@ -25,12 +25,12 @@ class Frog(Entity):
         self.add_tag("animal")
         self.add_tag("amphibian")
 
-    def update(self, dt: float) -> None:
+    def update(self) -> None:
         """Update frog behavior."""
         # Basic frog logic - mostly handled by AI component
         ai = self.get_component("BasicAI")
         if ai:
-            ai.update(dt)
+            ai.update()
 
     @property
     def display_char(self) -> str:

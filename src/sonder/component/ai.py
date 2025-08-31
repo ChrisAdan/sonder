@@ -1,10 +1,10 @@
 """AI components for autonomous behavior."""
 
-import random  # nosec B311
-import time
-
 from .base import Component
 from .movement import MovementComponent
+
+import random  # nosec B311
+import time
 
 
 class BasicAI(Component):
@@ -15,7 +15,7 @@ class BasicAI(Component):
         self.next_action_time = 0.0
         self.action_interval = 1.0  # seconds between actions
 
-    def update(self, dt: float) -> None:
+    def update(self) -> None:
         """Update AI behavior."""
         current_time = time.time()
 
@@ -39,4 +39,4 @@ class BasicAI(Component):
         dy = random.choice([-1, 0, 1])  # nosec B311
 
         if dx != 0 or dy != 0:
-            movement.move(dx, dy, time.time())
+            movement.intend_move(dx, dy, time.time())
