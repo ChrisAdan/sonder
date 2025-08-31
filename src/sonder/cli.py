@@ -115,7 +115,9 @@ def run(
 
         # Start the simulation
         try:
-            game_loop.start()  # This would need to be modified to handle tick limits
+            game_loop.start(
+                ticks=ticks
+            )  # This would need to be modified to handle tick limits
 
         except KeyboardInterrupt:
             click.echo("\nSimulation stopped by user")

@@ -1,7 +1,7 @@
 """Main game loop implementation."""
 
 import time
-from typing import List
+from typing import List, Optional
 
 from ..system.base import System
 from .config import game_config
@@ -23,10 +23,10 @@ class GameLoop:
         self.systems.append(system)
         system.world = self.world
 
-    def start(self) -> None:
+    def start(self, ticks: Optional[int]) -> None:
         """Start the game loop."""
         self.running = True
-        self._run_loop()
+        self._run_loop(ticks)
 
     def stop(self) -> None:
         """Stop the game loop."""
@@ -40,12 +40,14 @@ class GameLoop:
         """Resume the game loop."""
         self.paused = False
 
-    def _run_loop(self) -> None:
+    def _run_loop(self, ticks: Optional[int]) -> None:
         """Main loop implementation."""
         tick_duration = 1.0 / self.target_tick_rate
         last_tick = time.time()
 
         while self.running:
+            if ticks is not None and self.world.state.tick_count >= ticks:
+                break
             current_time = time.time()
 
             if not self.paused and (current_time - last_tick) >= tick_duration:
